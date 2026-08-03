@@ -15,7 +15,9 @@ function executeQuery(sql) {
   });
 }
 
+// ==============================
 // GET ALL PRODUCTS
+// ==============================
 router.get("/products", async (req, res) => {
   try {
     const rows = await executeQuery(`
@@ -30,6 +32,7 @@ router.get("/products", async (req, res) => {
         IMAGE_URL,
         STATUS
       FROM PRODUCTS
+      ORDER BY PRODUCT_ID
     `);
 
     const products = rows.map((p) => ({
@@ -50,7 +53,41 @@ router.get("/products", async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Database Error" });
+    res.status(500).json({
+      error: "Database Error",
+    });
+  }
+});
+
+// ==============================
+// GET ALL CATEGORIES
+// ==============================
+router.get("/categories", async (req, res) => {
+  try {
+    const rows = await executeQuery(`
+      SELECT
+        CATEGORY_ID,
+        CATEGORY_NAME,
+        DESCRIPTION
+      FROM CATEGORIES
+      ORDER BY CATEGORY_ID
+    `);
+
+    const categories = rows.map((c) => ({
+      id: c.CATEGORY_ID,
+      name: c.CATEGORY_NAME,
+      description: c.DESCRIPTION,
+    }));
+
+    res.json({
+      count: categories.length,
+      categories,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      error: "Database Error",
+    });
   }
 });
 
