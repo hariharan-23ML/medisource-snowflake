@@ -1,9 +1,4 @@
 node_modules/
-backend/node_modules/
-
 .env
-backend/.env
-
-.vscode/
-
-.DS_Store
+snowflake.log
+*.log
