@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart — MediSource</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><span class="dot"></span>MEDISOURCE</a>
+    <div style="flex:1"></div>
+    <div class="header-actions">
+      <a href="cart.html" class="cart-badge">🛒<span>Cart</span><span class="count" id="cart-count">0</span></a>
+      <span id="auth-slot"></span>
+    </div>
+  </div>
+</header>
+
+<div class="container section">
+  <div class="section-head"><h2>Your Cart</h2></div>
+  <div class="catalog-layout" style="grid-template-columns: 1fr 320px;">
+    <div id="cart-lines"></div>
+    <aside class="cart-summary">
+      <div class="summary-row"><span>Items</span><span id="sum-count">0</span></div>
+      <div class="summary-row"><span>Subtotal</span><span id="sum-subtotal">₹0</span></div>
+      <div class="summary-row"><span>Shipping</span><span>Calculated at checkout</span></div>
+      <div class="summary-row total"><span>Total</span><span id="sum-total">₹0</span></div>
+      <a href="checkout.html" class="btn btn-primary btn-block" style="margin-top:14px" id="checkout-btn">Proceed to Checkout →</a>
+    </aside>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom"><span>© 2026 MediSource. Demo project — not a real marketplace.</span><span>Built with Claude</span></div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

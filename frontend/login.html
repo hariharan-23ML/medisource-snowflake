@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — MediSource</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><span class="dot"></span>MEDISOURCE</a>
+  </div>
+</header>
+
+<div class="auth-card">
+  <h1>Sign In</h1>
+  <div id="login-error"></div>
+  <form id="login-form">
+    <div class="form-field">
+      <label>Email</label>
+      <input type="email" id="l-email" required>
+    </div>
+    <div class="form-field">
+      <label>Password</label>
+      <input type="password" id="l-password" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+  </form>
+  <p class="hint">Demo admin account — email: <b>admin@medisource.test</b>, password: <b>admin123</b></p>
+  <p class="hint">Don't have an account? <a href="register.html" style="color:var(--teal); font-weight:600">Create one</a></p>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+document.getElementById("login-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const errorEl = document.getElementById("login-error");
+  errorEl.innerHTML = "";
+  try {
+    const { token, user } = await api("/auth/login", {
+      method: "POST",
+      body: { email: document.getElementById("l-email").value, password: document.getElementById("l-password").value },
+    });
+    Session.save(token, user);
+    const next = new URLSearchParams(window.location.search).get("next") || "index.html";
+    window.location.href = next;
+  } catch (err) {
+    errorEl.innerHTML = `<div class="error-box">${escapeHtml(err.message)}</div>`;
+  }
+});
+</script>
+</body>
+</html>

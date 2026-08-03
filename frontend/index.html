@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediSource — Sourcing for Hospitals, Clinics & Labs</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <span>PAN-INDIA DELIVERY · GST INVOICING · BULK ORDER SUPPORT</span>
+    <span>HELPLINE: 1800-000-0000</span>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><span class="dot"></span>MEDISOURCE</a>
+    <form class="search-form" id="search-form">
+      <input type="text" id="search-input" placeholder="Search equipment, brand or SKU…" autocomplete="off">
+      <button type="submit">SEARCH</button>
+    </form>
+    <div class="header-actions">
+      <a href="cart.html" class="cart-badge">🛒<span>Cart</span><span class="count" id="cart-count">0</span></a>
+      <span id="auth-slot"></span>
+    </div>
+  </div>
+  <nav class="category-nav">
+    <div class="container" id="category-nav-list">
+      <a href="index.html" class="active"><span class="led"></span>All Equipment</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div>
+      <div class="hero-eyebrow">Verified suppliers · 20,000+ SKUs</div>
+      <h1>Every instrument your facility runs on, sourced in one place.</h1>
+      <p>From diagnostic imaging to disposables — compare specs, stock and pricing across certified manufacturers, and order in a few clicks.</p>
+      <a href="#catalog" class="btn btn-primary">Browse Catalog →</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-value">8</div><div class="stat-label">Categories</div></div>
+      <div><div class="stat-value">20+</div><div class="stat-label">Product Lines</div></div>
+      <div><div class="stat-value">24hr</div><div class="stat-label">Dispatch SLA</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="container section" id="catalog">
+  <div class="section-head">
+    <h2>Catalog <span class="tag" id="result-count">— items</span></h2>
+  </div>
+  <div class="catalog-layout">
+    <aside class="filters">
+      <h3>Category</h3>
+      <div id="filter-categories"></div>
+      <h3>Sort by</h3>
+      <select id="sort-select">
+        <option value="">Relevance</option>
+        <option value="price_asc">Price: Low to High</option>
+        <option value="price_desc">Price: High to Low</option>
+        <option value="rating">Top Rated</option>
+      </select>
+      <h3>Price range (₹)</h3>
+      <div class="price-row">
+        <input type="number" id="min-price" placeholder="Min">
+        <input type="number" id="max-price" placeholder="Max">
+      </div>
+      <button class="btn btn-dark btn-block" style="margin-top:12px" id="apply-price">Apply</button>
+    </aside>
+    <div>
+      <div class="product-grid" id="product-grid">
+        <!-- product cards injected here -->
+      </div>
+      <div class="empty-state" id="empty-state" style="display:none">
+        <div class="icon">🔍</div>
+        <p>No equipment matched your filters. Try clearing search or category.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Company</h4>
+        <a href="#">About MediSource</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+      </div>
+      <div>
+        <h4>For Buyers</h4>
+        <a href="index.html">Browse Catalog</a>
+        <a href="orders.html">Track Orders</a>
+        <a href="#">Bulk Quotes</a>
+      </div>
+      <div>
+        <h4>For Suppliers</h4>
+        <a href="#">Sell on MediSource</a>
+        <a href="admin.html">Supplier Console</a>
+      </div>
+      <div>
+        <h4>Policies</h4>
+        <a href="#">Shipping</a>
+        <a href="#">Returns</a>
+        <a href="#">Warranty</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MediSource. Demo project — not a real marketplace.</span>
+      <span>Built with Claude</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

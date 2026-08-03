@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Orders — MediSource</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><span class="dot"></span>MEDISOURCE</a>
+    <div style="flex:1"></div>
+    <div class="header-actions">
+      <a href="cart.html" class="cart-badge">🛒<span>Cart</span><span class="count" id="cart-count">0</span></a>
+      <span id="auth-slot"></span>
+    </div>
+  </div>
+</header>
+
+<div class="container section">
+  <div class="section-head"><h2>Your Orders</h2></div>
+  <div id="orders-list"></div>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+async function load() {
+  const el = document.getElementById("orders-list");
+  if (!Session.isLoggedIn()) {
+    el.innerHTML = `<div class="empty-state"><div class="icon">🔒</div><p>Sign in to view your orders.</p><a href="login.html?next=orders.html" class="btn btn-dark" style="margin-top:10px">Sign In</a></div>`;
+    return;
+  }
+  const orders = await api("/orders", { auth: true });
+  if (orders.length === 0) {
+    el.innerHTML = `<div class="empty-state"><div class="icon">📦</div><p>No orders yet.</p><a href="index.html" class="btn btn-dark" style="margin-top:10px">Browse Catalog</a></div>`;
+    return;
+  }
+  el.innerHTML = orders.map(o => `
+    <div class="cart-summary" style="margin-bottom:14px; position:static">
+      <div class="summary-row"><span style="font-weight:600">Order #${o.id}</span><span class="product-sku">${new Date(o.createdAt).toLocaleDateString()}</span></div>
+      ${o.items.map(i => `<div class="summary-row"><span>${escapeHtml(i.name)} × ${i.qty}</span><span>${formatPrice(i.lineTotal)}</span></div>`).join("")}
+      <div class="summary-row total"><span>Total</span><span>${formatPrice(o.total)}</span></div>
+      <div class="stock-note ok" style="margin-top:6px">Status: ${escapeHtml(o.status)}</div>
+    </div>
+  `).join("");
+}
+load();
+</script>
+</body>
+</html>

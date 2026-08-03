@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — MediSource</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><span class="dot"></span>MEDISOURCE</a>
+    <div style="flex:1"></div>
+    <div class="header-actions">
+      <span id="auth-slot"></span>
+    </div>
+  </div>
+</header>
+
+<div class="container section" style="max-width:900px">
+  <div class="section-head"><h2>Checkout</h2></div>
+  <div id="checkout-content" class="catalog-layout" style="grid-template-columns: 1fr 320px;">
+    <form id="checkout-form">
+      <div id="checkout-error"></div>
+      <div class="form-grid">
+        <div class="form-field full">
+          <label>Facility / Contact Name</label>
+          <input type="text" id="f-name" required>
+        </div>
+        <div class="form-field full">
+          <label>Address Line 1</label>
+          <input type="text" id="f-line1" required>
+        </div>
+        <div class="form-field">
+          <label>City</label>
+          <input type="text" id="f-city" required>
+        </div>
+        <div class="form-field">
+          <label>PIN Code</label>
+          <input type="text" id="f-pin" required>
+        </div>
+        <div class="form-field full">
+          <label>Phone</label>
+          <input type="tel" id="f-phone" required>
+        </div>
+        <div class="form-field full">
+          <label>Payment Method</label>
+          <select id="f-payment">
+            <option value="cod">Cash / Invoice on Delivery</option>
+            <option value="bank_transfer">Bank Transfer (NEFT/RTGS)</option>
+            <option value="card">Credit / Debit Card</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="place-order-btn">Place Order</button>
+    </form>
+    <aside class="cart-summary" id="checkout-summary">
+      <!-- injected -->
+    </aside>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>

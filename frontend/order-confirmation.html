@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed — MediSource</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><span class="dot"></span>MEDISOURCE</a>
+  </div>
+</header>
+
+<div class="container section" style="max-width:600px; text-align:center">
+  <div id="confirmation-content"></div>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+async function load() {
+  const id = new URLSearchParams(window.location.search).get("id");
+  const el = document.getElementById("confirmation-content");
+  try {
+    const order = await api(`/orders/${id}`, { auth: true });
+    el.innerHTML = `
+      <div style="font-size:56px; margin-bottom:16px">✅</div>
+      <h1 style="font-family:var(--font-display)">Order Confirmed</h1>
+      <p class="product-sku" style="font-size:14px">Order #${order.id} · ${new Date(order.createdAt).toLocaleString()}</p>
+      <p>We've received your order for ${formatPrice(order.total)} and will ship to ${escapeHtml(order.address.city)}.</p>
+      <div style="display:flex; gap:12px; justify-content:center; margin-top:20px">
+        <a href="orders.html" class="btn btn-dark">View Orders</a>
+        <a href="index.html" class="btn btn-outline" style="color:var(--ink)">Continue Shopping</a>
+      </div>
+    `;
+  } catch (err) {
+    el.innerHTML = `<div class="empty-state"><p>${escapeHtml(err.message)}</p></div>`;
+  }
+}
+load();
+</script>
+</body>
+</html>
